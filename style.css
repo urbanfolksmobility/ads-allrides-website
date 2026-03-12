@@ -1174,10 +1174,25 @@ section {
     display: none;
   }
 
-  .hero-text h1 {
-    font-size: 2.5rem;
+  /* Reduce Hero Size */
+  .hero {
+    padding: 8rem 0 4rem;
   }
 
+  .hero-text h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  /* General Adjustments */
   .section-title {
     font-size: 2rem;
   }
@@ -1186,8 +1201,36 @@ section {
     grid-template-columns: 1fr;
   }
 
+  /* Location Split Block Adjustments */
+  .split-side {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .split-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .split-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  /* CTA Block Adjustments */
+  .cta {
+    padding: 4rem 0;
+  }
+
+  .cta-container h2 {
+    font-size: 2rem;
+  }
+
   .cta-actions {
     flex-direction: column;
+  }
+
+  .cta-actions .btn {
+    width: 100%;
   }
 }
 
