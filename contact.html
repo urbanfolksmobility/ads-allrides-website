@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Allrides Bus Ticket Ads</title>
+    <meta name="description" content="Get in touch with Allrides to start your bus ticket advertising campaign.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Specific Contact Page Styling */
+        .contact-section {
+            padding: 12rem 0 8rem;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            color: var(--clr-heading);
+        }
+
+        .contact-info p {
+            font-size: 1.25rem;
+            color: var(--clr-text-light);
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--clr-surface);
+            transition: var(--transition);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(82, 196, 134, 0.1);
+            color: var(--clr-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .info-details h3 {
+            font-size: 1.1rem;
+            color: var(--clr-heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .info-details a {
+            color: var(--clr-text);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .info-details a:hover {
+            color: var(--clr-primary);
+        }
+
+        .contact-visual {
+            background: #fff;
+            padding: 4rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--clr-primary);
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">Allrides <span>Ads</span></a>
+            <div class="nav-links">
+                <a href="index.html#about">About</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#benefits">Benefits</a>
+                <a href="index.html#testimonials">Testimonials</a>
+            </div>
+            <a href="contact.html" class="nav-btn">Advertise With Us</a>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container contact-grid">
+            <div class="contact-info" data-aos="fade-right">
+                <div class="label">Get In Touch</div>
+                <h1>Let's Start Your Campaign</h1>
+                <p>Reach out to our team to discuss advertising opportunities, pricing, and how we can help your brand
+                    reach thousands of daily commuters.</p>
+
+                <div class="info-card">
+                    <div class="info-icon"><i data-lucide="mail"></i></div>
+                    <div class="info-details">
+                        <h3>Email Us</h3>
+                        <a href="mailto:contact@allrides.in">contact@allrides.in</a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon"><i data-lucide="phone"></i></div>
+                    <div class="info-details">
+                        <h3>Call Us</h3>
+                        <a href="tel:+919995212025">+91 9995 21 2025</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-visual" data-aos="fade-left" data-aos-delay="200">
+                <div style="font-size: 4rem; color: var(--clr-primary); margin-bottom: 1.5rem;">
+                    <i data-lucide="headset" style="width: 80px; height: 80px;"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">We're Here to Help!</h3>
+                <p style="color: var(--clr-text-light); margin-bottom: 2rem;">Our advertising specialists are ready to
+                    answer your questions and set up your local campaigns.</p>
+                <a href="mailto:contact@allrides.in" class="btn btn-primary" style="width: 100%;">Send an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>Allrides <span>Ads</span></h3>
+                <p>An innovative advertising product by <strong>Urbanfolks Mobility</strong>.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <a href="index.html#about">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="index.html#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter">X</a>
+                    <a href="#" aria-label="LinkedIn">In</a>
+                    <a href="#" aria-label="Facebook">Fb</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Urbanfolks Mobility. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
