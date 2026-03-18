@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Medium for Mass Advertising | Bus Ticket Ads Cost Calculator</title>
+    <meta name="description"
+        content="Calculate your budget for bus ticket advertising. Discover why allrides is the best medium for mass advertising for brands, events, and movies compared to digital, TV, and billboards.">
+    <meta name="keywords" content="best medium for mass advertising, mass communication tool, bus ticket advertising, local advertising platform, advertise on bus tickets, advertising budget calculator">
+
+    <!-- Structured Data for AEO / SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Bus Ticket Advertising Cost Calculator",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "An interactive budget calculator to estimate the cost and reach of bus ticket advertising compared to other mass advertising mediums.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Why is bus ticket advertising considered the best medium for mass advertising?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bus ticket advertising is highly effective because it delivers a physical touchpoint directly into the hands of local commuters. Unlike digital ads which can be skipped or billboards that are easily ignored, passengers hold, read, and retain their bus tickets."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the minimum budget required for a bus ticket advertising campaign?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The minimum budget to start a campaign is ₹10,000, which guarantees 1,00,000 physical impressions."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How does the pricing work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The base rate is 10 paise per ticket up to 5 Lakh tickets. As your volume increases, significant discounts are unlocked, pulling your average cost per ticket down to as low as 5 paise."
+        }
+      }]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .calc-hero { padding: 120px 0 60px; background: #f8fafc; text-align: center; }
+        .calc-hero h1 { font-family: 'Poppins', sans-serif; font-size: 2.5rem; color: #1e293b; margin-bottom: 20px; }
+        .calc-hero h1 span { color: var(--clr-primary); }
+        .calc-hero p { font-size: 1.1rem; color: #64748b; max-width: 700px; margin: 0 auto; }
+
+        .calculator-section { padding: 60px 0; background: white; }
+        .calc-container { max-width: 800px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        
+        .calc-mode-toggle { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        .mode-btn { padding: 10px 24px; border: 2px solid var(--clr-primary); background: transparent; color: var(--clr-primary); border-radius: 8px; font-size: 1.05rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .mode-btn.active { background: var(--clr-primary); color: white; }
+        .mode-btn:hover:not(.active) { background: rgba(82, 196, 134, 0.1); }
+
+        .input-group { margin-bottom: 30px; }
+        .input-group label { display: block; font-weight: 600; color: #334155; margin-bottom: 15px; font-size: 1.1rem; }
+        .slider-container { display: flex; align-items: center; gap: 20px; }
+        .slider { flex: 1; -webkit-appearance: none; appearance: none; height: 8px; border-radius: 4px; background: #e2e8f0; outline: none; }
+        .slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--clr-primary); cursor: pointer; transition: 0.2s; }
+        .slider::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        
+        .input-wrapper { position: relative; display: inline-block; }
+        .input-prefix { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); font-weight: 600; color: #64748b; font-size: 1.2rem; pointer-events: none; display: none; }
+        .ticket-input { font-size: 1.2rem; padding: 12px 15px; border: 2px solid #e2e8f0; border-radius: 8px; width: 180px; text-align: right; font-weight: 600; color: #1e293b; outline: none; font-family: var(--font-text); }
+        .ticket-input:focus { border-color: var(--clr-primary); }
+        
+        .mode-cost .input-prefix { display: block; }
+        .mode-cost .ticket-input { padding-left: 30px; }
+
+        .results { background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 30px; text-align: center; border: 1px solid #e2e8f0; }
+        .results h3 { font-size: 1.2rem; color: #64748b; margin-bottom: 10px; font-weight: 500; }
+        .total-cost { font-size: 3rem; font-weight: 700; color: var(--clr-primary); margin-bottom: 10px; }
+        .per-ticket-cost { font-size: 1.1rem; color: #64748b; }
+        
+        .tier-info { margin-top: 20px; font-size: 0.95rem; color: #64748b; background: #e0f2fe; padding: 10px 20px; border-radius: 8px; display: inline-block; font-weight: 500; }
+
+        .comparison-section { padding: 80px 0; background: #f8fafc; }
+        .dynamic-metric { display: block; margin-top: 5px; }
+
+        .seo-section { padding: 80px 0; background: white; text-align: center; }
+        .seo-content { max-width: 800px; margin: 0 auto; }
+        .seo-content h2 { font-size: 2rem; color: #1e293b; margin-bottom: 20px; font-family: 'Poppins', sans-serif; }
+        .seo-content p { font-size: 1.1rem; color: #64748b; line-height: 1.8; margin-bottom: 20px; }
+        
+        .faq-section { padding: 60px 0 80px; background: #f8fafc; }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: white; margin-bottom: 15px; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; }
+        .faq-question { padding: 20px 25px; width: 100%; text-align: left; background: none; border: none; font-size: 1.15rem; font-weight: 600; color: #1e293b; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question i { color: var(--clr-primary); transition: transform 0.3s ease; }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: #64748b; line-height: 1.6; }
+        .faq-item.active .faq-answer { padding: 0 25px 25px; max-height: 300px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        @media (max-width: 768px) {
+            .slider-container { flex-direction: column; align-items: stretch; }
+            .input-wrapper { width: 100%; }
+            .ticket-input { width: 100%; text-align: left; }
+            .calc-hero h1 { font-size: 2rem; }
+            .calc-container { padding: 20px; }
+            .total-cost { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">allrides <span>Ads</span></a>
+            <div class="nav-links">
+                <a href="index.html#about">About</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#benefits">Benefits</a>
+                <a href="index.html#testimonials">Testimonials</a>
+                <a href="bus-ticket-advertising-calculator.html">Price Calculator</a>
+            </div>
+            <a href="contact.html" class="nav-btn">Advertise With Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="calc-hero">
+        <div class="container">
+            <h1>Bus Ticket <span>Advertising Calculator</span></h1>
+            <p>Calculate your campaign budget and see how physical ticket ads out-perform traditional and digital media formats.</p>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="calc-container">
+                <div class="calc-mode-toggle">
+                    <button class="mode-btn active" id="btnReachMode">Target Reach</button>
+                    <button class="mode-btn" id="btnCostMode">Target Budget</button>
+                </div>
+                
+                <div class="input-group" id="inputSection">
+                    <label id="inputLabel" for="calcInput">How many tickets do you want to print?</label>
+                    <div class="slider-container">
+                        <input type="range" id="calcSlider" class="slider" min="100000" max="10000000" step="10000" value="100000">
+                        <div class="input-wrapper" id="inputWrapper">
+                            <span class="input-prefix" id="inputPrefix">₹</span>
+                            <input type="number" id="calcInput" class="ticket-input" min="100000" max="10000000" step="10000" value="100000">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="results">
+                    <h3 id="resultLabel">Estimated Campaign Cost</h3>
+                    <div class="total-cost" id="mainResult">₹10,000</div>
+                    <div class="per-ticket-cost">Average cost per ticket: <span id="avgCost" style="font-weight:600; color:#1e293b;">10</span> paise</div>
+                    <div class="tier-info" id="tierInfo">Base rate: 10 paise per ticket.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title text-center" style="margin-bottom: 20px;">What happens with a <span id="compBudgetSpan" style="color:var(--clr-primary);">₹10,000</span> budget elsewhere?</h2>
+            <div class="table-container" style="margin-top: 40px;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Advertising Medium</th>
+                            <th>Description</th>
+                            <th>Estimated Outcomes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px; font-weight: 600;">
+                                    <i data-lucide="ticket" style="color:var(--clr-primary);"></i>
+                                    Bus Ticket Ads
+                                </div>
+                            </td>
+                            <td>Highly targeted physical touchpoints delivered directly into the hands of local commuters. They hold it, read it, and keep it.</td>
+                            <td>
+                                <span style="font-size: 0.9em; color:#64748b; font-weight:normal;">Estimated Impressions:</span><br/>
+                                <span class="dynamic-metric" id="dynTicket" style="color: var(--clr-primary); font-size: 1.25rem; font-weight: 700;">1,00,000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #334155;">
+                                    <i data-lucide="monitor-smartphone" style="color:#64748b;"></i>
+                                    Digital Ads
+                                </div>
+                            </td>
+                            <td>Easily skipped, ad-blocked, or scrolled past in seconds. Targeting can be broad and fleeting.</td>
+                            <td>
+                                <span style="font-size: 0.9em; color:#64748b; font-weight:normal;">Estimated Impressions:</span><br/>
+                                <span class="dynamic-metric" id="dynDigital" style="color:#64748b; font-weight: 600;">~50,000</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #334155;">
+                                    <i data-lucide="monitor" style="color:#64748b;"></i>
+                                    Billboards
+                                </div>
+                            </td>
+                            <td>Requires massive budgets for a single static location. Most commuters drive past without actively reading.</td>
+                            <td>
+                                <span style="font-size: 0.9em; color:#64748b; font-weight:normal;">Estimated Impressions:</span><br/>
+                                <span class="dynamic-metric" id="dynBillboard" style="color:#64748b; font-weight: 600;">None (Budget too low)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #334155;">
+                                    <i data-lucide="newspaper" style="color:#64748b;"></i>
+                                    Newspaper
+                                </div>
+                            </td>
+                            <td>High cost for a single day's exposure. Readership is dropping, and ads are quickly recycled.</td>
+                            <td>
+                                <span style="font-size: 0.9em; color:#64748b; font-weight:normal;">Estimated Impressions:</span><br/>
+                                <span class="dynamic-metric" id="dynNews" style="color:#64748b; font-weight: 600;">Small Quarter Page</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; color: #334155;">
+                                    <i data-lucide="radio" style="color:#64748b;"></i>
+                                    TV & Radio
+                                </div>
+                            </td>
+                            <td>Prohibitively expensive production and airing costs. Audiences often tune out during commercial breaks.</td>
+                            <td>
+                                <span style="font-size: 0.9em; color:#64748b; font-weight:normal;">Estimated Impressions:</span><br/>
+                                <span class="dynamic-metric" id="dynTv" style="color:#64748b; font-weight: 600;">None (Budget too low)</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Information Section -->
+    <section class="seo-section">
+        <div class="container seo-content">
+            <h2>The Best Medium for Mass Advertising</h2>
+            <p>When launching a new movie, hosting a mega event, or building a local brand presence, you need a mass communication tool that reaches an enormous audience effectively. Bus ticket advertising currently stands out as the ultimate mass marketing solution.</p>
+            <p>Unlike digital ads that disappear when you scroll or billboards that require huge investments for single stationary locations, physical bus tickets guarantee that your messaging is placed directly into the hands of thousands of daily commuters. It is an un-skippable, physical advertising platform offering unmatched hyper-local targeting and incredible brand recall at a fraction of the cost of traditional media.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container faq-container">
+            <h2 class="section-title text-center" style="margin-bottom: 40px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    Why is bus ticket advertising considered the best medium for mass advertising?
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Bus ticket ads are highly effective because they deliver a physical touchpoint directly into the hands of a localized commuter base. Unlike digital platforms where ads can be easily blocked or skipped, passengers actually physically hold, read, and retain their bus tickets, generating unbeatable mass awareness.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    What is the minimum budget required for a campaign?
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>The minimum budget to start a campaign with allrides is ₹10,000. For this budget, you are guaranteed at least 1,00,000 highly targeted physical impressions, significantly outperforming TV, radio, and billboard options at the same price point.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    How does the pricing and volume discount work?
+                    <i data-lucide="chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Our base rate starts at just 10 paise per ticket up to 5 Lakh tickets. We utilize a descending scale—as your volume increases (up to 1+ Crore tickets), substantial discounts are unlocked that can drop the marginal extra ticket cost to as low as 5 paise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>allrides <span>Ads</span></h3>
+                <p>An innovative advertising product by <strong>Urbanfolks Mobility</strong>.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <a href="index.html#about">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="index.html#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter">X</a>
+                    <a href="#" aria-label="LinkedIn">In</a>
+                    <a href="#" aria-label="Facebook">Fb</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Urbanfolks Mobility. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+        // Calculator State
+        let currentMode = 'reach'; // 'reach' or 'cost'
+        
+        // DOM Elements
+        const btnReach = document.getElementById('btnReachMode');
+        const btnCost = document.getElementById('btnCostMode');
+        const inputLabel = document.getElementById('inputLabel');
+        const resultLabel = document.getElementById('resultLabel');
+        const wrapper = document.getElementById('inputWrapper');
+        
+        const slider = document.getElementById('calcSlider');
+        const input = document.getElementById('calcInput');
+        const mainResultEl = document.getElementById('mainResult');
+        const avgCostEl = document.getElementById('avgCost');
+        const tierInfoEl = document.getElementById('tierInfo');
+        
+        // Dynamic Compare Elements
+        const dynTicket = document.getElementById('dynTicket');
+        const dynDigital = document.getElementById('dynDigital');
+        const dynBillboard = document.getElementById('dynBillboard');
+        const dynNews = document.getElementById('dynNews');
+        const dynTv = document.getElementById('dynTv');
+        const compBudgetSpan = document.getElementById('compBudgetSpan');
+
+        // Initial setup for reach mode: Min = 1 lakh tickets
+        const MIN_TICKETS = 100000;
+        const MIN_BUDGET = 10000;
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-IN').format(num);
+        }
+
+        // Forward Calc: Tickets -> Cost
+        function calcCostFromTickets(tickets) {
+            let total = 0;
+            if (tickets <= 500000) { total = tickets * 0.10; } 
+            else if (tickets <= 1000000) { total = (500000 * 0.10) + ((tickets - 500000) * 0.08); } 
+            else if (tickets <= 2000000) { total = (500000 * 0.10) + (500000 * 0.08) + ((tickets - 1000000) * 0.06); } 
+            else { total = (500000 * 0.10) + (500000 * 0.08) + (1000000 * 0.06) + ((tickets - 2000000) * 0.05); }
+            return total;
+        }
+
+        // Reverse Calc: Cost -> Tickets
+        function calcTicketsFromCost(cost) {
+            if (cost <= 50000) { // Up to 5L tickets at 10p
+                return cost / 0.10;
+            } else if (cost <= 90000) { // 50k + 40k = 90k (up to 10L tickets)
+                return 500000 + ((cost - 50000) / 0.08);
+            } else if (cost <= 150000) { // 90k + 60k = 150k (up to 20L tickets)
+                return 1000000 + ((cost - 90000) / 0.06);
+            } else { // Beyond 150k
+                return 2000000 + ((cost - 150000) / 0.05);
+            }
+        }
+        
+        function getTierMessage(tickets) {
+            if (tickets <= 500000) return { msg: "Base rate: 10 paise per ticket.", bg: "#e0f2fe", col: "#0369a1" };
+            if (tickets <= 1000000) return { msg: "Volume discount unlocked! Extra tickets at 8 paise.", bg: "#dcfce7", col: "#166534" };
+            if (tickets <= 2000000) return { msg: "Mega volume discount! Extra tickets at 6 paise.", bg: "#fef3c7", col: "#92400e" };
+            return { msg: "Maximum discount reached! Extra tickets at 5 paise.", bg: "#ffedd5", col: "#c2410c" };
+        }
+
+        function updateComparison(budget, tickets) {
+            compBudgetSpan.innerText = formatCurrency(budget);
+            dynTicket.innerText = formatNumber(Math.floor(tickets));
+            
+            // Assume 0.2 INR per digital ad impression on average globally configured for India
+            const digitalImp = Math.floor(budget / 0.2);
+            dynDigital.innerText = "~" + formatNumber(digitalImp);
+            
+            if (budget >= 100000) {
+                dynBillboard.innerText = "1 Small Location (1 month)";
+            } else {
+                dynBillboard.innerText = "None (Budget too low)";
+            }
+            
+            if (budget >= 50000) {
+                dynNews.innerText = "1 Half Page (1 issue)";
+            } else {
+                dynNews.innerText = "1 Small Quarter Page";
+            }
+            
+            if (budget >= 200000) {
+                dynTv.innerText = "Brief Local TV Ad (few days)";
+            } else {
+                dynTv.innerText = "None (Budget too low)";
+            }
+        }
+
+        function updateUI(value) {
+            let tickets, budget;
+            if (currentMode === 'reach') {
+                tickets = value;
+                budget = calcCostFromTickets(tickets);
+                mainResultEl.innerText = formatCurrency(budget);
+            } else {
+                budget = value;
+                tickets = calcTicketsFromCost(budget);
+                mainResultEl.innerText = formatNumber(Math.floor(tickets)) + " tickets";
+            }
+            
+            const tierInfo = getTierMessage(tickets);
+            tierInfoEl.innerText = tierInfo.msg;
+            tierInfoEl.style.backgroundColor = tierInfo.bg;
+            tierInfoEl.style.color = tierInfo.col;
+            
+            const avgPaise = tickets > 0 ? ((budget / tickets) * 100).toFixed(1) : 0;
+            avgCostEl.innerText = avgPaise.endsWith('.0') ? avgPaise.slice(0, -2) : avgPaise;
+            
+            updateComparison(budget, tickets);
+        }
+
+        slider.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value);
+            input.value = val;
+            updateUI(val);
+        });
+
+        input.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value);
+            if (isNaN(val)) val = currentMode === 'reach' ? MIN_TICKETS : MIN_BUDGET;
+            if (val < parseInt(slider.min)) val = parseInt(slider.min);
+            if (val > parseInt(slider.max)) val = parseInt(slider.max);
+            slider.value = val;
+            updateUI(val);
+        });
+        
+        btnReach.addEventListener('click', () => {
+            currentMode = 'reach';
+            btnCost.classList.remove('active');
+            btnReach.classList.add('active');
+            wrapper.classList.remove('mode-cost');
+            
+            inputLabel.innerText = "How many tickets do you want to print?";
+            resultLabel.innerText = "Estimated Campaign Cost";
+            
+            slider.min = MIN_TICKETS;
+            slider.max = 10000000;
+            slider.step = 10000;
+            
+            let val = calcTicketsFromCost(parseInt(input.value));
+            if (val < MIN_TICKETS) val = MIN_TICKETS;
+            
+            slider.value = Math.floor(val);
+            input.value = Math.floor(val);
+            
+            updateUI(Math.floor(val));
+        });
+        
+        btnCost.addEventListener('click', () => {
+            currentMode = 'cost';
+            btnReach.classList.remove('active');
+            btnCost.classList.add('active');
+            wrapper.classList.add('mode-cost');
+            
+            inputLabel.innerText = "What is your target budget?";
+            resultLabel.innerText = "Estimated Total Reach";
+            
+            slider.min = MIN_BUDGET;
+            slider.max = 500000; // 5 lakhs budget is 50 lakh+ tickets
+            slider.step = 5000;
+            
+            let val = calcCostFromTickets(parseInt(input.value));
+            if (val < MIN_BUDGET) val = MIN_BUDGET;
+            
+            slider.value = Math.floor(val);
+            input.value = Math.floor(val);
+            
+            updateUI(Math.floor(val));
+        });
+
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize state
+        updateUI(parseInt(slider.value));
+    </script>
+</body>
+</html>
